@@ -36,8 +36,36 @@ SELECT INN_OF_INDIV FROM XMLD_PARTICIPANTS WHERE PARTICIPANT_ID =
 --12
 SELECT NAME_OF_VALUTA||' '||CURS_OF_VALUTA FROM XMLD_UTD_HEADERS WHERE SERIAL_NUMBER_OF_THE_INVOICES = 'ЗНАЧЕНИЕ ВВОДА';
 --13
-
-
+--названия столбцов
+select 'Название торава',
+        'Код товара',
+        'Код единицы измерения',
+        'Условное обозначение единицы измерения',
+        'Количество',
+        'Цена товара',
+        'Стоимость товаров, без налога - всего',
+        'Сумма акциза',
+        'Налоговая ставка',
+        'Сумма налога, предъявляемая покупателю',
+        'Стоимость товаров, с налогом - всего',
+        'Цифровой код страны происхождения товара',
+        'Краткое наименование страны происхождения товара' from dual;
+--заполнение данными
+select NAME_OF_PRODUCT as "Название торава",
+        CODE_OF_Product as "Код товара",
+        UNIT_CODE as "Код единицы измерения",
+        UNIT_NAME as "Условное обозначение единицы измерения",
+        QUANTITY as "Количество",
+        PRICE_OF_UNIT as "Цена товара",
+        SUM_OF_PRODUCT_WITHOUT_TAX as "Стоимость товаров, без налога - всего",
+        SUM_OF_EXCISE as "Сумма акциза",
+        TAX_RATE as "Налоговая ставка",
+        SUM_OF_TAX as "Сумма налога, предъявляемая покупателю",
+        SUM_OF_PRODUCT_WITH_TAX as "Стоимость товаров, с налогом - всего",
+        COUNTRY_CODE_OF_PRODUCT as "Цифровой код страны происхождения товара",
+        BRIEF_NAME_OF_COUNTRY_OF_PROD as "Краткое наименование страны происхождения товара" 
+        from XMLD_UTD_LINES 
+            where UTD_ID = (select UTD_ID from XMLD_UTD_HEADERS where  SERIAL_NUMBER_OF_THE_INVOICES = 'ЗНАЧЕНИЕ ВВОДА' );
 
 --14 I 16 I 18 НЕ БУДЕМ ПОКА ПОТОМ
 
